@@ -1,0 +1,20 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/PingDeskX/Back-End#readme",
+  "bugs": {
+    "url": "https://github.com/PingDeskX/Back-End/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PingDeskX/Back-End.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
