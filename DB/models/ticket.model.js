@@ -19,5 +19,5 @@ export const createTicketSchema = async () => {
         );
     `;
   console.log("Creating tickets table...");
-  await sql.unsafe(ticketSchema);
+  await sql`${sql.unsafe(ticketSchema)}`;
 };

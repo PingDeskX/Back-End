@@ -15,5 +15,5 @@ export const createUserTable = async () => {
     `;
   console.log("Creating users table...");
 
-  await sql.unsafe(userschema);
+  await sql`${sql.unsafe(userschema)}`;
 };
