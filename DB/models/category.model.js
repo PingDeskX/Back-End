@@ -1,6 +1,6 @@
-import {sql} from 'connectionDb.js';
+import {sql} from '../connectionDb.js';
 
-export const createcategorySchema = async () => {
+export const createCategorySchema = async () => {
     const categorySchema = `
         CREATE TABLE IF NOT EXISTS categories (
             id SERIAL PRIMARY KEY,

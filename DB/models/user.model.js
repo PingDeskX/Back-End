@@ -1,13 +1,13 @@
-import {sql} from 'connectionDb.js';
+import {sql} from '../connectionDb.js';
 
-const createUserTable = async () => {
-    userschema = `
+export const createUserTable = async () => {
+    const userschema = `
     CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
         name Varchar(100) NOT NULL,
         email Varchar(100) UNIQUE NOT NULL,
         password Varchar(100) NOT NULL,
-        role user_role DEFAULT 'user',
+        role user_role enum('user', 'admin') DEFAULT 'user',
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
     );
