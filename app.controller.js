@@ -3,12 +3,25 @@ import cors from 'cors';
 import helmet from 'helmet';
 import authRouter from './modules/auth/auth.router.js';
 import { connectDb } from './DB/connectionDb.js';
+import { createMessagesTable } from './DB/models/message.model.js';
+import { createAttachmentsTable } from './DB/models/attachment.model.js';
+import { createNotificationsTable } from './DB/models/notification.model.js';
 
 export const bootstrap = async () => {
   const app = express();
   const PORT = process.env.PORT || 3000;
 
-  await connectDb();
+  try {
+    await connectDb();
+
+    await createMessagesTable();
+    await createAttachmentsTable();
+    await createNotificationsTable();
+    console.log("🚀 All your tables created successfully on Neon!");
+
+  } catch (error) {
+    console.error("❌ Database initialization error:", error.message);
+  }
 
   app.use(helmet());
   app.use(cors());
