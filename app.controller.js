@@ -2,13 +2,18 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import authRouter from './modules/auth/auth.router.js';
+import { connectDb } from './DB/connectionDb.js';
 
-export const bootstrap = () => {
+export const bootstrap = async () => {
+  const app = express();
+  const PORT = process.env.PORT || 3000;
+
+  await connectDb();
+
   app.use(helmet());
   app.use(cors());
   app.use(express.json());
 
- 
   app.get('/', (req, res) => {
     return res.status(200).json({ message: "Welcome to PingdeskX" });
   });
@@ -24,5 +29,9 @@ export const bootstrap = () => {
       message: err.message || "Internal Server Error",
       error: err
     });
+  });
+
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
   });
 };
