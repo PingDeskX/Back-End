@@ -7,7 +7,7 @@ export const createUserTable = async () => {
         name Varchar(100) NOT NULL,
         email Varchar(100) UNIQUE NOT NULL,
         password Varchar(100) NOT NULL,
-        role user_role enum('user', 'admin') DEFAULT 'user',
+        role user_role enum('user', 'admin', 'moderator') DEFAULT 'user',
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
     );
