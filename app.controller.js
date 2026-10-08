@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import authRouter from "./modules/auth/auth.router.js";
+import userRouter from "./modules/user/user.router.js";
+import { errorHandler } from "./common/middleware/errorhandle.js";
 import { connectDb } from "./DB/connectionDb.js";
 import { createUserTable } from "./DB/models/user.model.js";
 import { createCategorySchema } from "./DB/models/category.model.js";
@@ -37,17 +39,13 @@ export const bootstrap = async () => {
   });
 
   app.use("/auth", authRouter);
+  app.use("/user", userRouter);
 
   app.use("/demo", (req, res) => {
     return res.status(404).json({ message: "404 Page Not Found" });
   });
 
-  app.use((err, req, res, next) => {
-    return res.status(err.cause || 500).json({
-      message: err.message || "Internal Server Error",
-      error: err,
-    });
-  });
+  app.use(errorHandler);
 
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
